@@ -20,6 +20,7 @@ public class App {
         // 4. Calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후
             // App 클래스의 main 메서드에 삭제 메서드가 활용될 수 있도록 수정
         Scanner sc = new Scanner(System.in);
+        Calculator calculator = new Calculator();
 
         while (true) {
 
@@ -51,31 +52,10 @@ public class App {
                 }
             }
 
-
             System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
             char arithmetic = sc.nextLine().charAt(0);
-            int result = 0;
-            switch (arithmetic) {
-                case '+':
-                    result = integer1 + integer2;
-                    break;
-                case '-':
-                    result = integer1 - integer2;
-                    break;
-                case '/':
-                    if(integer2 == 0){
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    } else {
-                        result = integer1 / integer2;
-                    }
-                    break;
-                case '*':
-                    result = integer1 * integer2;
-                    break;
-                default:
-                    System.out.println("잘못된 접근입니다.");
-                    break;
-            }
+
+            int result = calculator.makeCalculator(integer1, integer2, arithmetic);
 
             System.out.println("결과 : " + result);
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
