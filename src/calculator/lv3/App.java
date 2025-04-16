@@ -28,36 +28,14 @@ public class App {
             int num1 = -1;
             int num2 = -1;
 
-            while (num1 < 0) {
-                try {
-                    System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
-                    num1 = Integer.parseInt(sc.nextLine());
-                    if (num1 < 0) {
-                        System.out.println("양의 정수를 입력해 주세요");
-                    }
-                } catch (Exception e) {
-                    System.out.println("양의 정수를 입력해 주세요");
-                }
-            }
-            while (num2 < 0) {
-                try {
-                    System.out.print("두 번째 양의 정수를 입력해주세요 : ");
-                    num2 = Integer.parseInt(sc.nextLine());
-                    if (num2 < 0) {
-                        System.out.println("양의 정수를 입력해 주세요");
-                    }
-                } catch (Exception e) {
-                    System.out.println("양의 정수를 입력해 주세요");
-                }
-            }
-
-
+            num1 = inputNumber(sc, num1);
+            num2 = inputNumber(sc, num2);
 
             System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
             char arithmetic = sc.nextLine().charAt(0);
 
             int result = intCalculator.calculate(num1, num2, arithmetic);
-            ArrayList<Integer> tempArray = intCalculator.getResults();
+            var tempArray = intCalculator.getResults();
             tempArray.add(result);
             intCalculator.setResults(tempArray);
 
@@ -68,7 +46,6 @@ public class App {
                 intCalculator.removeFirstResult();
                 System.out.println("결과 : " + tempArray);
             }
-
 
             int soutArray = -1;
             while (true) {
@@ -82,7 +59,6 @@ public class App {
             }
             intCalculator.printGreaterNumber(soutArray);
 
-
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String exit = sc.nextLine();
             if (exit.equals("exit")) {
@@ -90,5 +66,20 @@ public class App {
                 return;
             }
         }
+    }
+
+    public static int inputNumber(Scanner sc, int num){
+        while (num < 0) {
+            try {
+                System.out.print("양의 정수를 입력해주세요 : ");
+                num = Integer.parseInt(sc.nextLine());
+                if (num < 0) {
+                    System.out.println("양의 정수를 입력해 주세요");
+                }
+            } catch (Exception e) {
+                System.out.println("양의 정수를 입력해 주세요");
+            }
+        }
+        return num;
     }
 }

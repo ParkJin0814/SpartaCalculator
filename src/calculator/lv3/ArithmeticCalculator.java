@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 public class ArithmeticCalculator<T extends Number> {
     private ArrayList<T> results = new ArrayList<>();
 
-
-
-
     public ArrayList<T> getResults() {
         return this.results;
     }
