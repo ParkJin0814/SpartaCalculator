@@ -1,7 +1,5 @@
 package calculator.lv3;
 
-import java.security.PrivateKey;
-
 public enum OperatorType{
     addition("+"){
         @Override
