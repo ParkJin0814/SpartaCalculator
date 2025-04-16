@@ -22,50 +22,67 @@ public class App {
                 // Java 강의에서 람다 & 스트림을 학습 및 복습 하시고 적용 해보세요!
             // 추가) 람다 & 스트림 학습을 위해 여러 가지 조회 조건들을 추가하여 구현 해보시면 학습에 많은 도움이 되실 수 있습니다.
         Scanner sc = new Scanner(System.in);
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator<Integer> intCalculator = new ArithmeticCalculator<>();
 
         while (true) {
-            int integer1 = -1;
-            int integer2 = -1;
+            int num1 = -1;
+            int num2 = -1;
 
-            while (integer1 < 0) {
+            while (num1 < 0) {
                 try {
                     System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
-                    integer1 = Integer.parseInt(sc.nextLine());
-                    if (integer1 < 0) {
+                    num1 = Integer.parseInt(sc.nextLine());
+                    if (num1 < 0) {
                         System.out.println("양의 정수를 입력해 주세요");
                     }
                 } catch (Exception e) {
                     System.out.println("양의 정수를 입력해 주세요");
                 }
             }
-            while (integer2 < 0) {
+            while (num2 < 0) {
                 try {
                     System.out.print("두 번째 양의 정수를 입력해주세요 : ");
-                    integer2 = Integer.parseInt(sc.nextLine());
-                    if (integer2 < 0) {
+                    num2 = Integer.parseInt(sc.nextLine());
+                    if (num2 < 0) {
                         System.out.println("양의 정수를 입력해 주세요");
                     }
                 } catch (Exception e) {
                     System.out.println("양의 정수를 입력해 주세요");
                 }
             }
+
+
 
             System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
             char arithmetic = sc.nextLine().charAt(0);
 
-            int result = calculator.makeCalculator(integer1, integer2, arithmetic);
-            ArrayList<Integer> tempArray = calculator.getResults();
+            int result = intCalculator.calculate(num1, num2, arithmetic);
+            ArrayList<Integer> tempArray = intCalculator.getResults();
             tempArray.add(result);
-            calculator.setResults(tempArray);
+            intCalculator.setResults(tempArray);
 
             System.out.println("결과  : " + tempArray);
             System.out.print("remove 입력 시 결과의 첫 번째 요소를 제거  : ");
             String remove = sc.nextLine();
             if (remove.equals("remove")) {
-                calculator.removeFirstResult();
+                intCalculator.removeFirstResult();
                 System.out.println("결과 : " + tempArray);
             }
+
+
+            int soutArray = -1;
+            while (true) {
+                try {
+                    System.out.print("입력받은 값보다 큰 결과값 들을 출력 : ");
+                    soutArray = Integer.parseInt(sc.nextLine());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("숫자를 입력해 주세요");
+                }
+            }
+            intCalculator.printGreaterNumber(soutArray);
+
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String exit = sc.nextLine();
             if (exit.equals("exit")) {
