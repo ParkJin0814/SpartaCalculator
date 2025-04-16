@@ -15,10 +15,32 @@ public class App {
             int integer1 = -1;
             int integer2 = -1;
 
-            System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
-            integer1 = Integer.parseInt(sc.nextLine());
-            System.out.print("두 번째 양의 정수를 입력해주세요 : ");
-            integer2 = Integer.parseInt(sc.nextLine());
+            while (integer1 < 0) {
+                try {
+                    System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
+                    integer1 = Integer.parseInt(sc.nextLine());
+                    if(integer1 <0){
+                        System.out.println("양의 정수를 입력해 주세요");
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println("양의 정수를 입력해 주세요");
+                }
+            }
+            while (integer2 < 0) {
+                try {
+                    System.out.print("두 번째 양의 정수를 입력해주세요 : ");
+                    integer2 = Integer.parseInt(sc.nextLine());
+                    if(integer2 <0){
+                        System.out.println("양의 정수를 입력해 주세요");
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println("양의 정수를 입력해 주세요");
+                }
+            }
+
+
             System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
             char arithmetic = sc.nextLine().charAt(0);
             int result = 0;
