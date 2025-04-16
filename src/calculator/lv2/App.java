@@ -25,7 +25,6 @@ public class App {
         Calculator calculator = new Calculator();
 
         while (true) {
-
             int integer1 = -1;
             int integer2 = -1;
 
@@ -70,9 +69,9 @@ public class App {
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String exit = sc.nextLine();
             if (exit.equals("exit")) {
+                System.out.println("프로그램 종료");
                 return;
             }
-            System.out.println("프로그램 종료");
         }
     }
 }
