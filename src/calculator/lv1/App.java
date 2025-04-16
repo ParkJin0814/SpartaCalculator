@@ -16,9 +16,26 @@ public class App {
         int integer2 = Integer.parseInt(sc.nextLine());
         System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
         char arithmetic = sc.nextLine().charAt(0);
+        int result = 0;
+        switch (arithmetic)
+        {
+            case '+':
+                result = integer1 + integer2;
+                break;
+            case '-':
+                result = integer1 - integer2;
+                break;
+            case '/':
+                result = integer1 / integer2;
+                break;
+            case '*':
+                result = integer1 * integer2;
+                break;
+            default:
+                System.out.println("잘못된 접근입니다.");
+                break;
+        }
 
-        System.out.println(integer1);
-        System.out.println(integer2);
-        System.out.println(arithmetic);
+        System.out.println(result);
     }
 }
