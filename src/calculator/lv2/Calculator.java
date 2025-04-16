@@ -3,7 +3,14 @@ package calculator.lv2;
 import java.util.ArrayList;
 
 public class Calculator {
-    ArrayList<Integer> results = new ArrayList<>();
+    private ArrayList<Integer> results = new ArrayList<>();
+
+    public ArrayList<Integer> getResults() {
+        return this.results;
+    }
+    public void setResults(ArrayList<Integer> results){
+        this.results = results;
+    }
 
     public int makeCalculator (int a, int b, char arithmetic){
         int result = 0;
@@ -29,7 +36,8 @@ public class Calculator {
                 break;
         }
 
-        results.add(result);
         return result;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package calculator.lv2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -56,6 +57,9 @@ public class App {
             char arithmetic = sc.nextLine().charAt(0);
 
             int result = calculator.makeCalculator(integer1, integer2, arithmetic);
+            ArrayList<Integer> tempArray = calculator.getResults();
+            tempArray.add(result);
+            calculator.setResults(tempArray);
 
             System.out.println("결과 : " + result);
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
