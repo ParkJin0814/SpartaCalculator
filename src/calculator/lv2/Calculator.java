@@ -39,5 +39,8 @@ public class Calculator {
         return result;
     }
 
+    public void removeFirstResult(){
+        results.removeFirst();
+    }
 
 }

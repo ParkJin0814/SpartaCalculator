@@ -1,6 +1,7 @@
 package calculator.lv2;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class App {
@@ -32,11 +33,10 @@ public class App {
                 try {
                     System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
                     integer1 = Integer.parseInt(sc.nextLine());
-                    if(integer1 <0){
+                    if (integer1 < 0) {
                         System.out.println("양의 정수를 입력해 주세요");
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("양의 정수를 입력해 주세요");
                 }
             }
@@ -44,11 +44,10 @@ public class App {
                 try {
                     System.out.print("두 번째 양의 정수를 입력해주세요 : ");
                     integer2 = Integer.parseInt(sc.nextLine());
-                    if(integer2 <0){
+                    if (integer2 < 0) {
                         System.out.println("양의 정수를 입력해 주세요");
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("양의 정수를 입력해 주세요");
                 }
             }
@@ -61,14 +60,19 @@ public class App {
             tempArray.add(result);
             calculator.setResults(tempArray);
 
-            System.out.println("결과 : " + result);
+            System.out.println("결과  : " + tempArray);
+            System.out.print("remove 입력 시 결과의 첫 번째 요소를 제거  : ");
+            String remove = sc.nextLine();
+            if (remove.equals("remove")) {
+                calculator.removeFirstResult();
+                System.out.println("결과 : " + tempArray);
+            }
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String exit = sc.nextLine();
-            if(exit.equals("exit"))
-            {
-                break;
+            if (exit.equals("exit")) {
+                return;
             }
+            System.out.println("프로그램 종료");
         }
-        System.out.println("프로그램 종료");
     }
 }
