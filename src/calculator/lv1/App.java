@@ -11,11 +11,14 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
-        int integer1 = sc.nextInt();
+        int integer1 = Integer.parseInt(sc.nextLine());
         System.out.print("두 번째 양의 정수를 입력해주세요 : ");
-        int integer2 = sc.nextInt();
+        int integer2 = Integer.parseInt(sc.nextLine());
+        System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
+        char arithmetic = sc.nextLine().charAt(0);
 
         System.out.println(integer1);
         System.out.println(integer2);
+        System.out.println(arithmetic);
     }
 }
