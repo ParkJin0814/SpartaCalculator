@@ -1,5 +1,7 @@
 package calculator.lv2;
 
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
         // 1. 사칙연산을 수행 후, 결과값 반환 메서드 구현 & 연산 결과를 저장하는 컬렉션 타입 필드를 가진 Calculator 클래스를 생성
@@ -17,5 +19,72 @@ public class App {
             // 위 요구사항을 모두 구현 했다면 App 클래스의 main 메서드에서 위에서 구현한 메서드를 활용 해봅니다.
         // 4. Calculator 클래스에 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후
             // App 클래스의 main 메서드에 삭제 메서드가 활용될 수 있도록 수정
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+
+            int integer1 = -1;
+            int integer2 = -1;
+
+            while (integer1 < 0) {
+                try {
+                    System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
+                    integer1 = Integer.parseInt(sc.nextLine());
+                    if(integer1 <0){
+                        System.out.println("양의 정수를 입력해 주세요");
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println("양의 정수를 입력해 주세요");
+                }
+            }
+            while (integer2 < 0) {
+                try {
+                    System.out.print("두 번째 양의 정수를 입력해주세요 : ");
+                    integer2 = Integer.parseInt(sc.nextLine());
+                    if(integer2 <0){
+                        System.out.println("양의 정수를 입력해 주세요");
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println("양의 정수를 입력해 주세요");
+                }
+            }
+
+
+            System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
+            char arithmetic = sc.nextLine().charAt(0);
+            int result = 0;
+            switch (arithmetic) {
+                case '+':
+                    result = integer1 + integer2;
+                    break;
+                case '-':
+                    result = integer1 - integer2;
+                    break;
+                case '/':
+                    if(integer2 == 0){
+                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                    } else {
+                        result = integer1 / integer2;
+                    }
+                    break;
+                case '*':
+                    result = integer1 * integer2;
+                    break;
+                default:
+                    System.out.println("잘못된 접근입니다.");
+                    break;
+            }
+
+            System.out.println("결과 : " + result);
+            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료) : ");
+            String exit = sc.nextLine();
+            if(exit.equals("exit"))
+            {
+                break;
+            }
+        }
+        System.out.println("프로그램 종료");
     }
 }
