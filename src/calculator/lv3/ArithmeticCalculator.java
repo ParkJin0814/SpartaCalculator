@@ -15,27 +15,36 @@ public class ArithmeticCalculator<T extends Number> {
     }
 
     public T calculate (T num1, T num2, char arithmetic){
-        T result = null;
-
+        Number number = null;
         switch (arithmetic) {
             case '+':
-                result = (T) OperatorType.addition.apply(num1, num2);
+                number = OperatorType.addition.apply(num1, num2);
                 break;
             case '-':
-                result = (T) OperatorType.subtract.apply(num1, num2);
+                number = OperatorType.subtract.apply(num1, num2);
                 break;
             case '/':
-                result = (T) OperatorType.divide.apply(num1, num2);
+                number = OperatorType.divide.apply(num1, num2);
                 break;
             case '*':
-                result = (T) OperatorType.multiplication.apply(num1, num2);
+                number = OperatorType.multiplication.apply(num1, num2);
                 break;
             default:
                 System.out.println("잘못된 접근입니다.");
                 break;
         }
 
-        return result;
+        if(num1 instanceof Double){
+            number = number.doubleValue();
+        } else if (num1 instanceof Float){
+            number = number.floatValue();
+        } else if (num1 instanceof Long){
+            number = number.longValue();
+        } else if (num1 instanceof Integer){
+            number = number.intValue();
+        }
+
+        return (T)number;
     }
 
     public void removeFirstResult(){
