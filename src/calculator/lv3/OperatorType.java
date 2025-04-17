@@ -1,42 +1,42 @@
 package calculator.lv3;
 
 public enum OperatorType{
-    addition("+"){
-        @Override
-        public Number apply(Number a, Number b) {
-            return a.doubleValue() + b.doubleValue();
-        }
-    }
-    ,
-    subtract ("-"){
-        @Override
-        public Number apply(Number a, Number b) {
-            return a.doubleValue() - b.doubleValue();
-        }
-    },
-    multiplication("*"){
-        @Override
-        public Number apply(Number a, Number b) {
-            return a.doubleValue() * b.doubleValue();
-        }
-    },
-    divide("/"){
-        @Override
-        public Number apply(Number a, Number b) {
-            if(b.doubleValue() == 0){
-                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                return 0;
-            } else {
-                return a.doubleValue() / b.doubleValue();
-            }
-        }
-    }
+    ADDITION("+", (a,b)-> a.doubleValue() + b.doubleValue()),
+    SUBTRACT("-", (a,b) -> a.doubleValue() - b.doubleValue()),
+    MULTIPLICATION("*", (a,b) -> a.doubleValue() * b.doubleValue()),
+    DIVIDE("/", (a,b)->{
+        if(b.doubleValue() == 0){
+            System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+            return 0;
+        } else {
+            return a.doubleValue() / b.doubleValue();
+        }})
     ;
 
     final String operator;
-    OperatorType(String operator) {
+    final Operation operation;
+    OperatorType(String operator, Operation operation) {
         this.operator = operator;
+        this.operation = operation;
     }
 
-    public abstract Number apply(Number a, Number b);
+    public static OperatorType ofArithmetic(char arithmetic) {
+        switch (arithmetic) {
+            case '+':
+                return OperatorType.ADDITION;
+            case '-':
+                return OperatorType.SUBTRACT;
+            case '/':
+                return OperatorType.DIVIDE;
+            case '*':
+                return OperatorType.MULTIPLICATION;
+        }
+        throw new IllegalArgumentException();
+    }
+    
+    @FunctionalInterface
+    interface Operation{
+        Number apply(Number a, Number b);
+    }
+    
 }

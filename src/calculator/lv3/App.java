@@ -1,5 +1,7 @@
 package calculator.lv3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -27,14 +29,14 @@ public class App {
             int num1 = -1;
             int num2 = -1;
 
-            num1 = inputNumber(sc, num1);
-            num2 = inputNumber(sc, num2);
+            num1 = inputNumber(sc);
+            num2 = inputNumber(sc);
 
             System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
             char arithmetic = sc.nextLine().charAt(0);
 
             int result = intCalculator.calculate(num1, num2, arithmetic);
-            var tempArray = intCalculator.getResults();
+            List<Integer> tempArray = intCalculator.getResults();
             tempArray.add(result);
             intCalculator.setResults(tempArray);
 
@@ -67,7 +69,8 @@ public class App {
         }
     }
 
-    public static int inputNumber(Scanner sc, int num) {
+    public static int inputNumber(Scanner sc) {
+        int num = -1 ;
         while (num < 0) {
             try {
                 System.out.print("양의 정수를 입력해주세요 : ");

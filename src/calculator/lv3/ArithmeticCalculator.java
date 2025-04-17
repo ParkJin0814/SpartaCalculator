@@ -5,46 +5,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ArithmeticCalculator<T extends Number> {
-    private ArrayList<T> results = new ArrayList<>();
+    private List<T> results = new ArrayList<>();
 
-    public ArrayList<T> getResults() {
+    public List<T> getResults() {
         return this.results;
     }
-    public void setResults(ArrayList<T> results){
+    public void setResults(List<T> results){
         this.results = results;
     }
 
     public T calculate (T num1, T num2, char arithmetic){
-        Number number = null;
-        switch (arithmetic) {
-            case '+':
-                number = OperatorType.addition.apply(num1, num2);
-                break;
-            case '-':
-                number = OperatorType.subtract.apply(num1, num2);
-                break;
-            case '/':
-                number = OperatorType.divide.apply(num1, num2);
-                break;
-            case '*':
-                number = OperatorType.multiplication.apply(num1, num2);
-                break;
-            default:
-                System.out.println("잘못된 접근입니다.");
-                break;
-        }
+        OperatorType op = OperatorType.ofArithmetic(arithmetic);
+        Number number = op.operation.apply(num1, num2);
 
-        if(num1 instanceof Double){
-            number = number.doubleValue();
-        } else if (num1 instanceof Float){
-            number = number.floatValue();
-        } else if (num1 instanceof Long){
-            number = number.longValue();
-        } else if (num1 instanceof Integer){
-            number = number.intValue();
-        }
-
-        return (T)number;
+        return (T)returnTypeValue(number, num1);
     }
 
     public void removeFirstResult(){
@@ -52,10 +26,28 @@ public class ArithmeticCalculator<T extends Number> {
     }
 
     public void printGreaterNumber(T number){
-        List<T> printList = results.stream()
+        System.out.println(results.stream()
                 .filter((num)-> num.doubleValue() > number.doubleValue())
-                .collect(Collectors.toList());
-        System.out.println(printList);
+                .collect(Collectors.toList()));
+        /*results.stream()
+            .filter((num)-> num.doubleValue() > number.doubleValue())
+            .forEach((T num) -> {
+                System.out.print(num);
+            });*/
+    }
+
+    private Number returnTypeValue(Number number, T t){
+        if(t instanceof Double){
+            number = number.doubleValue();
+        } else if (t instanceof Float){
+            number = number.floatValue();
+        } else if (t instanceof Long){
+            number = number.longValue();
+        } else if (t instanceof Integer){
+            number = number.intValue();
+        }
+
+        return number;
     }
 
 }
