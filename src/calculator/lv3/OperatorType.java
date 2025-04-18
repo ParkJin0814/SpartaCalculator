@@ -21,17 +21,7 @@ public enum OperatorType{
     }
 
     public static OperatorType ofArithmetic(char arithmetic) {
-        switch (arithmetic) {
-            case '+':
-                return OperatorType.ADDITION;
-            case '-':
-                return OperatorType.SUBTRACT;
-            case '/':
-                return OperatorType.DIVIDE;
-            case '*':
-                return OperatorType.MULTIPLICATION;
-        }
-        throw new IllegalArgumentException();
+        return null;
     }
     
     @FunctionalInterface

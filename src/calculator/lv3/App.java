@@ -72,14 +72,10 @@ public class App {
     public static int inputNumber(Scanner sc) {
         int num = -1 ;
         while (num < 0) {
-            try {
-                System.out.print("양의 정수를 입력해주세요 : ");
-                num = Integer.parseInt(sc.nextLine());
-                if (num < 0) {
-                    System.out.println("양의 정수를 입력해 주세요");
-                }
-            } catch (Exception e) {
-                System.out.println("양의 정수를 입력해 주세요");
+            System.out.print("양의 정수를 입력해주세요 : ");
+            String text = sc.nextLine();
+            if(text.chars().allMatch(Character::isDigit)){
+                num = Integer.parseInt(text);
             }
         }
         return num;
