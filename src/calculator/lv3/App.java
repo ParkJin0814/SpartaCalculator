@@ -1,6 +1,5 @@
 package calculator.lv3;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,8 +25,8 @@ public class App {
         ArithmeticCalculator<Integer> intCalculator = new ArithmeticCalculator<>();
 
         while (true) {
-            int num1 = inputNumber(sc);
-            int num2 = inputNumber(sc);            
+            int num1 = inputPositiveInteger(sc, "첫 번째 양의정수를 입력해주세요 : ");
+            int num2 = inputPositiveInteger(sc, "두 번째 양의정수를 입력해주세요 : ");
             char arithmetic = inputArithmetic(sc);
 
             int result = intCalculator.calculate(num1, num2, arithmetic);
@@ -64,16 +63,17 @@ public class App {
         }
     }
 
-    public static int inputNumber(Scanner sc) {
+    public static int inputPositiveInteger(Scanner sc, String printText) {
         int num = -1 ;
         while (num < 0) {
-            System.out.print("양의 정수를 입력해주세요 : ");
+            System.out.print(printText);
             String text = sc.nextLine();
             if(text != null && !text.isEmpty() && text.chars().allMatch(Character::isDigit)){
                 num = Integer.parseInt(text);
-            } else {
-                System.out.println("잘못된 값을 입력하였습니다.");
+                if(num >= 0) break;
             }
+
+            System.out.println("잘못된 값을 입력하였습니다.");
         }
         return num;
     }
