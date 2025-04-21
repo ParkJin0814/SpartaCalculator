@@ -26,14 +26,9 @@ public class App {
         ArithmeticCalculator<Integer> intCalculator = new ArithmeticCalculator<>();
 
         while (true) {
-            int num1 = -1;
-            int num2 = -1;
-
-            num1 = inputNumber(sc);
-            num2 = inputNumber(sc);
-
-            System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
-            char arithmetic = sc.nextLine().charAt(0);
+            int num1 = inputNumber(sc);
+            int num2 = inputNumber(sc);            
+            char arithmetic = inputArithmetic(sc);
 
             int result = intCalculator.calculate(num1, num2, arithmetic);
             List<Integer> tempArray = intCalculator.getResults();
@@ -76,8 +71,31 @@ public class App {
             String text = sc.nextLine();
             if(text.chars().allMatch(Character::isDigit)){
                 num = Integer.parseInt(text);
+            } else {
+                System.out.println("잘못된 값을 입력하였습니다.");
             }
         }
         return num;
+    }
+    
+    public static char inputArithmetic(Scanner sc) {
+        boolean isWhile = true;
+        char arithmetic = '-';
+        while (isWhile) {
+            System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
+            arithmetic = sc.nextLine().charAt(0);
+            switch (arithmetic){
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                    isWhile = false;
+                    break;
+                default:
+                    System.out.println("잘못된 값을 입력하였습니다.");
+                    break;
+            }
+        }
+        return arithmetic;
     }
 }
