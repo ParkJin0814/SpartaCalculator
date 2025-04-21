@@ -69,7 +69,7 @@ public class App {
         while (num < 0) {
             System.out.print("양의 정수를 입력해주세요 : ");
             String text = sc.nextLine();
-            if(text.chars().allMatch(Character::isDigit)){
+            if(text != null && !text.isEmpty() && text.chars().allMatch(Character::isDigit)){
                 num = Integer.parseInt(text);
             } else {
                 System.out.println("잘못된 값을 입력하였습니다.");
