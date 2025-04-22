@@ -24,34 +24,14 @@ public class App {
         Calculator calculator = new Calculator();
 
         while (true) {
-            int integer1 = -1;
-            int integer2 = -1;
+            int integer1 = inputPositiveInteger(sc, "첫 번째 양의 정수를 입력해주세요 : ");
+            int integer2 = inputPositiveInteger(sc, "두 번째 양의 정수를 입력해주세요 : ");
 
-            while (integer1 < 0) {
-                try {
-                    System.out.print("첫 번째 양의 정수를 입력해주세요 : ");
-                    integer1 = Integer.parseInt(sc.nextLine());
-                    if (integer1 < 0) {
-                        System.out.println("양의 정수를 입력해 주세요");
-                    }
-                } catch (Exception e) {
-                    System.out.println("양의 정수를 입력해 주세요");
-                }
+            char arithmetic = inputArithmetic(sc);
+            if(arithmetic == '/' && integer2 == 0){
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                continue;
             }
-            while (integer2 < 0) {
-                try {
-                    System.out.print("두 번째 양의 정수를 입력해주세요 : ");
-                    integer2 = Integer.parseInt(sc.nextLine());
-                    if (integer2 < 0) {
-                        System.out.println("양의 정수를 입력해 주세요");
-                    }
-                } catch (Exception e) {
-                    System.out.println("양의 정수를 입력해 주세요");
-                }
-            }
-
-            System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
-            char arithmetic = sc.nextLine().charAt(0);
 
             int result = calculator.makeCalculator(integer1, integer2, arithmetic);
             ArrayList<Integer> tempArray = calculator.getResults();
@@ -72,5 +52,41 @@ public class App {
                 return;
             }
         }
+    }
+
+    public static int inputPositiveInteger(Scanner sc, String printText) {
+        int num = -1 ;
+        while (num < 0) {
+            System.out.print(printText);
+            String text = sc.nextLine();
+            if(text != null && !text.isEmpty() && text.chars().allMatch(Character::isDigit)){
+                num = Integer.parseInt(text);
+                if(num >= 0) break;
+            }
+
+            System.out.println("잘못된 값을 입력하였습니다.");
+        }
+        return num;
+    }
+
+    public static char inputArithmetic(Scanner sc) {
+        boolean isWhile = true;
+        char arithmetic = '-';
+        while (isWhile) {
+            System.out.print("사칙연산 기호(➕,➖,✖\uFE0F,➗)를 입력해주세요 : ");
+            arithmetic = sc.nextLine().charAt(0);
+            switch (arithmetic){
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                    isWhile = false;
+                    break;
+                default:
+                    System.out.println("잘못된 값을 입력하였습니다.");
+                    break;
+            }
+        }
+        return arithmetic;
     }
 }

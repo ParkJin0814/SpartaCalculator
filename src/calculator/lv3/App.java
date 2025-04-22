@@ -29,6 +29,11 @@ public class App {
             int num2 = inputPositiveInteger(sc, "두 번째 양의정수를 입력해주세요 : ");
             char arithmetic = inputArithmetic(sc);
 
+            if(arithmetic == '/' && num2 == 0){
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                continue;
+            }
+
             int result = intCalculator.calculate(num1, num2, arithmetic);
             List<Integer> tempArray = intCalculator.getResults();
             tempArray.add(result);
