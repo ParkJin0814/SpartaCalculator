@@ -29,11 +29,6 @@ public class ArithmeticCalculator<T extends Number> {
         System.out.println(results.stream()
                 .filter((num)-> num.doubleValue() > number.doubleValue())
                 .collect(Collectors.toList()));
-        /*results.stream()
-            .filter((num)-> num.doubleValue() > number.doubleValue())
-            .forEach((T num) -> {
-                System.out.print(num);
-            });*/
     }
 
     private Number returnTypeValue(Number number, T t){
