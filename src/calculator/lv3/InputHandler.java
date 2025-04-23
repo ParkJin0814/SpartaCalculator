@@ -25,24 +25,20 @@ public class InputHandler {
     }
 
     public char inputArithmetic() {
-        boolean isWhile = true;
-        char arithmetic = '-';
-        while (isWhile) {
+        while (true) {
             System.out.print("사칙연산 기호(➕,➖,✖,➗)를 입력해주세요 : ");
-            arithmetic = sc.nextLine().charAt(0);
+            char arithmetic = sc.nextLine().charAt(0);
             switch (arithmetic){
                 case '+':
                 case '-':
                 case '*':
                 case '/':
-                    isWhile = false;
-                    break;
+                    return arithmetic;
                 default:
                     System.out.println("잘못된 값을 입력하였습니다.");
                     break;
             }
         }
-        return arithmetic;
     }
 
     public Number inputNumber(String printText) {
